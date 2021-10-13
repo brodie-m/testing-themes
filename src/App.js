@@ -5,7 +5,7 @@ import CardList from "./components/CardList";
 
 //start theme stuff
 import {ThemeProvider} from 'styled-components'
-import { GlobalStyles } from "./components/globalStyles";
+import { GlobalStyles } from "./components/GlobalStyles";
 import { lightTheme, darkTheme } from "./components/Themes";
 //end theme stuff
 
