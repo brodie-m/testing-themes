@@ -3,8 +3,25 @@ import "./App.css";
 import dummyData from "./data";
 import CardList from "./components/CardList";
 
+//start theme stuff
+import {ThemeProvider} from 'styled-components'
+import { GlobalStyles } from "./components/globalStyles";
+import { lightTheme, darkTheme } from "./components/Themes";
+//end theme stuff
+
+//bootstrap
+import {Button} from 'react-bootstrap'
+
 const App = () => {
   const [videos, setVideos] = useState([]);
+
+  //theme stuff
+  const [theme,setTheme]=useState('light');
+  function themeToggler() {
+    theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
+
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,8 +31,10 @@ const App = () => {
   }, []);
 
   return (
-      <>
-        <div className="App">      
+      <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStlyes/>
+        <div className="App">     
+          <Button onClick={themeToggler}>Switch theme</Button>
           {
             videos.map((list, index) => {
               return (
@@ -27,7 +46,8 @@ const App = () => {
               );
             })}
         </div>
-      </>
+        </ThemeProvider>
+      
     
   );
 };
