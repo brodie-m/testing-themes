@@ -34,7 +34,7 @@ const App = () => {
       <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles/>
         <div className="App">     
-          <Button onClick={themeToggler}>Switch theme</Button>
+          
           {
             videos.map((list, index) => {
               return (
@@ -46,6 +46,9 @@ const App = () => {
               );
             })}
         </div>
+        <footer className = 'd-flex justify-content-center'>
+        <Button onClick={themeToggler} className = 'btn btn-dark'>Switch theme</Button>
+        </footer>
         </ThemeProvider>
       
     
