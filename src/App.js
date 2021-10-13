@@ -32,7 +32,7 @@ const App = () => {
 
   return (
       <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStlyes/>
+      <GlobalStyles/>
         <div className="App">     
           <Button onClick={themeToggler}>Switch theme</Button>
           {
