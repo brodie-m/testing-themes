@@ -55,7 +55,7 @@ const dummyData = [
     ]
   },
   {
-    section: "  Recommended",
+    section: "Recommended",
     channel: "CGTN America",
     items: [
       {
