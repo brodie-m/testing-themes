@@ -11,6 +11,7 @@ export default function CustomNavbar() {
                <NavLink>Breaking News</NavLink>
                <NavLink>Entertainment</NavLink>
                <NavLink>Recommended</NavLink>
+               <NavLink to="/login">Login</NavLink>
            </Container> 
         </Navbar>
     )
