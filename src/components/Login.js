@@ -34,6 +34,7 @@ const Login = () => {
         </form>
         { error && <div id="error">{error}</div> }
         { loading && <div id="loading">Logging in . . .</div> }
+        <button>Register</button>
         </>
     );
 }
