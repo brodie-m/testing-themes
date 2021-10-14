@@ -42,11 +42,13 @@ const Login = () => {
         <form onSubmit={handleSubmit} aria-label="login">
             <input type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
             <input type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
+            { error && <div id="error">Wrong Username or Password</div> }
             <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />
+            <button onClick={handleClick}>Register instead</button>
         </form>
-        { error && <div id="error">{error}</div> }
-        { loading && <div id="loading">Logging in . . .</div> }
-        <Button onClick={handleClick}>Register instead</Button>
+       
+        
+        
         </>
     );
 }

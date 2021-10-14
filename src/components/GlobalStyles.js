@@ -44,4 +44,44 @@ export const GlobalStyles = createGlobalStyle`
         overflow: none;
         white-space: nowrap;
     }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5%;
+      }
+
+      form button {
+          background-color: transparent;
+          color: #ADD8E6;
+          box-shadow: none;
+          border: none;
+          outline:none;
+      }
+
+      form button:focus{
+          outline:none;
+      }
+      input {
+        padding: 1rem;
+        border: 0.2px solid grey;
+        border-radius: 5px;
+        font-family: monospace;
+        width: 50%;
+        margin: 0.5rem;
+      }
+      ul, ol {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      .enabled {
+          background-color: ${({ theme }) => theme.primary};
+          box-shadow: 5px 5px;
+          transition:0.4s
+      }
+      .enabled:hover {
+          box-shadow: none;
+          transform: translateY(2px)
+      
 `
