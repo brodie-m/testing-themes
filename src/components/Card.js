@@ -10,7 +10,6 @@ const Card = ({ item, channel }) => {
           className="card-link"
         >
           <img src={item.image} alt={item.title} className="card-image" />
-          <img src={item.image} alt={item.title} className="channel-image" />
           <h4 className="card-title">{item.title}</h4>
           <p className="card-channel">
             <i>{channel}</i>

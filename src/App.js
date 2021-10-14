@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import dummyData from "./data";
+
+//components
+import CustomNavbar from "./components/CustomNavbar";
 import CardList from "./components/CardList";
 
 //start theme stuff
@@ -33,6 +36,8 @@ const App = () => {
   return (
       <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles/>
+      <CustomNavbar/>
+        
         <div className="App">     
           
           {
