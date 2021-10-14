@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import dummyData from "./data";
+import { AuthProvider } from "./components/contexts/Auth";
 
 //components
 import CustomNavbar from "./components/CustomNavbar";
+import Login from "./components/Login";
 import CardList from "./components/CardList";
-import NotFound from './components/NotFound'
+import NotFound from "./components/NotFound";
+import Register from './components/Register'
+import PrivateRoute from "./components/PrivateRoute";
 //start theme stuff
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
@@ -23,6 +27,7 @@ import {
 //bootstrap
 import { Button } from "react-bootstrap";
 import TitleHighlight from "./components/TitleHighlight";
+import NoTokenRoute from "./components/NoTokenRoute";
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -42,41 +47,54 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <GlobalStyles />
-      <Router>
-        <Switch>
-        <Route path="/" exact>
-          <Redirect to="/home" />
-        </Route>
-        
-        <Route path="/home" exact>
-          
-        <CustomNavbar />
+      <AuthProvider>
+        <GlobalStyles />
+        <Router>
+          <Switch>
+            {/* <Route path='/login' exact>
+          <CustomNavbar/>
+          <Login/>
+        </Route> */}
+            <NoTokenRoute path="/login">
+              <CustomNavbar loggedIn={false}/>
+              <Login />
+            </NoTokenRoute>
+            <Route path='/register'>
+              <CustomNavbar loggedIn={false}/>
+              <Register/>
+            </Route>
+            <Route path="/" exact>
+              <Redirect to="/home" />
+            </Route>
 
-        <div className="App">
-          {videos.map((list, index) => {
-            return (
-              <section key={index}>
-                <TitleHighlight title={list.section}></TitleHighlight>
+            <PrivateRoute path="/home" exact>
+              <CustomNavbar loggedIn={true}/>
 
-                <CardList list={list} />
-                <hr />
-              </section>
-            );
-          })}
-        </div>
-        <footer className="d-flex justify-content-center">
-          <Button onClick={themeToggler} className="btn btn-dark">
-            Switch theme
-          </Button>
-        </footer>
-          </Route>
-          <Route path="*">
-          <CustomNavbar />
-          <NotFound/>
-          </Route>
-        </Switch>
-      </Router>
+              <div className="App">
+                {videos.map((list, index) => {
+                  return (
+                    <section key={index}>
+                      <TitleHighlight title={list.section}></TitleHighlight>
+
+                      <CardList list={list} />
+                      <hr />
+                    </section>
+                  );
+                })}
+              </div>
+              <footer className="d-flex justify-content-center">
+                <Button onClick={themeToggler} className="btn btn-dark">
+                  Switch theme
+                </Button>
+              </footer>
+            </PrivateRoute>
+            <Route path="*">
+              <CustomNavbar />
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 };

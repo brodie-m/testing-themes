@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
                 const options = {
                     headers: { 'Content-Type': 'application/json' }
                 }
-                const { data } = await axios.post(`${process.env.API_URL}/auth/register`, userData, options)
+                const { data } = await axios.post(`https://api-futurebook.herokuapp.com/auth/register`, userData, options)
                 if (data.err){
                     throw Error(data.err)
                 }
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
                 const options = {
                     headers: { 'Content-Type': 'application/json' }
                 }
-                const { data } = await axios.post(`${process.env.API_URL}/auth/login`, userData, options)
+                const { data } = await axios.post(`https://api-futurebook.herokuapp.com/auth/login`, userData, options)
                 if (!data.success) { 
                     throw new Error('Login not authorised');
                 }

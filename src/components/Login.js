@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useAuthContext } from "../../contexts/auth";
+import { useAuthContext } from "./contexts/Auth";
 import { useHistory } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 const Login = () => {
     const { login } = useAuthContext();
@@ -10,15 +11,26 @@ const Login = () => {
     const [ error, setError ] = useState();
     const [ loading, setLoading ] = useState(false);
     
-    const handleInput = e => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    function handleInput(e) {
+        e.persist();
+        e.preventDefault();
+        setFormData(function(prev){
+            return {...prev, [e.target.name]: e.target.value}
+            
+        })}
     const formIncomplete = () => Object.values(formData).some(v => !v)
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        window.location.href= '/register'
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             setLoading(true)
             await login(formData)
-            history.push('/feed')
+            history.push('/home')
         } catch (err) {
             setLoading(false)
             setError(err)
@@ -34,7 +46,7 @@ const Login = () => {
         </form>
         { error && <div id="error">{error}</div> }
         { loading && <div id="loading">Logging in . . .</div> }
-        <button>Register</button>
+        <Button onClick={handleClick}>Register instead</Button>
         </>
     );
 }
