@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { useAuthContext } from "./contexts/auth";
-import { Wisdom } from '../../contexts'
+import { useAuthContext } from "./contexts/Auth";
+import { Wisdom } from './contexts'
 
 const Register = () => {
     const { register, login } = useAuthContext();
@@ -15,7 +15,14 @@ const Register = () => {
     const [ error, setError ] = useState();
     const [ loading, setLoading ] = useState(false);
 
-    const handleInput = e => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    function handleInput(e) {
+        e.persist();
+        
+        setFormData(function(prev){
+            return {...prev, [e.target.name]: e.target.value}
+            
+        })}
+    
     const formIncomplete = () => Object.values(formData).some(v => !v) || passwordNoMatch();
     const passwordNoMatch = () => formData.password !== formData.passwordConfirmation;
 
@@ -25,7 +32,7 @@ const Register = () => {
             setLoading(true)
             await register(formData)
             await login(formData)
-            history.push('/feed')
+            await setLoading(false)
         } catch (err) {
             setLoading(false)
             setError(err)
@@ -43,7 +50,7 @@ const Register = () => {
         </form>
         { error && <div id="error">{error}</div> }
         { loading && <div id="loading">Creating account . . .</div> }
-        <div>{wisdom}</div>
+       
         </>
     );
     
