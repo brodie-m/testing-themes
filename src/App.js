@@ -71,22 +71,81 @@ const App = () => {
               <CustomNavbar loggedIn={true}/>
 
               <div className="App">
-                {videos.map((list, index) => {
+              {
+                videos.map((list, index) => {
+                  
                   return (
-                    <section key={index}>
-                      <TitleHighlight title={list.section}></TitleHighlight>
+                      <section key={index}>
+                        <TitleHighlight title={list.section}></TitleHighlight>
+  
+                        <CardList list={list} />
+                        <hr />
+                      </section>
+                    )})}
 
-                      <CardList list={list} />
-                      <hr />
-                    </section>
-                  );
-                })}
               </div>
               <footer className="d-flex justify-content-center">
                 <Button onClick={themeToggler} className="btn btn-dark">
                   Switch theme
                 </Button>
               </footer>
+            </PrivateRoute>
+            <PrivateRoute path="/breaking-news">
+                <CustomNavbar loggedIn={true}/>
+                <div className = 'App'>
+                {
+                videos.map((list, index) => {
+                  console.log(list)
+                  if (list.section !== 'Breaking News') {
+                    return ;
+                    }
+                    else return (
+                      <section key={index}>
+                        <TitleHighlight title={list.section}></TitleHighlight>
+  
+                        <CardList list={list} />
+                        <hr />
+                      </section>
+                    )})}
+                </div>
+            </PrivateRoute>
+            <PrivateRoute path="/entertainment">
+                <CustomNavbar loggedIn={true}/>
+                <div className = 'App'>
+                {
+                videos.map((list, index) => {
+                  console.log(list)
+                  if (list.section !== 'Entertainment') {
+                    return ;
+                    }
+                    else return (
+                      <section key={index}>
+                        <TitleHighlight title={list.section}></TitleHighlight>
+  
+                        <CardList list={list} />
+                        <hr />
+                      </section>
+                    )})}
+                </div>
+            </PrivateRoute>
+            <PrivateRoute path="/recommended">
+                <CustomNavbar loggedIn={true}/>
+                <div className = 'App'>
+                {
+                videos.map((list, index) => {
+                  console.log(list)
+                  if (list.section !== 'Recommended') {
+                    return ;
+                    }
+                    else return (
+                      <section key={index}>
+                        <TitleHighlight title={list.section}></TitleHighlight>
+  
+                        <CardList list={list} />
+                        <hr />
+                      </section>
+                    )})}
+                </div>
             </PrivateRoute>
             <Route path="*">
               <CustomNavbar />
