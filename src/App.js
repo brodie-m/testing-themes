@@ -8,8 +8,10 @@ import CustomNavbar from "./components/CustomNavbar";
 import Login from "./components/Login";
 import CardList from "./components/CardList";
 import NotFound from "./components/NotFound";
-import Register from './components/Register'
+import Register from "./components/Register";
 import PrivateRoute from "./components/PrivateRoute";
+import { Carousel } from "react-bootstrap";
+import Card from "./components/Card";
 //start theme stuff
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
@@ -56,33 +58,31 @@ const App = () => {
           <Login/>
         </Route> */}
             <NoTokenRoute path="/login">
-              <CustomNavbar loggedIn={false}/>
+              <CustomNavbar loggedIn={false} />
               <Login />
             </NoTokenRoute>
-            <Route path='/register'>
-              <CustomNavbar loggedIn={false}/>
-              <Register/>
+            <Route path="/register">
+              <CustomNavbar loggedIn={false} />
+              <Register />
             </Route>
             <Route path="/" exact>
               <Redirect to="/home" />
             </Route>
 
             <PrivateRoute path="/home" exact>
-              <CustomNavbar loggedIn={true}/>
+              <CustomNavbar loggedIn={true} />
 
               <div className="App">
-              {
-                videos.map((list, index) => {
-                  
+                {videos.map((list, index) => {
                   return (
-                      <section key={index}>
-                        <TitleHighlight title={list.section}></TitleHighlight>
-  
-                        <CardList list={list} />
-                        <hr />
-                      </section>
-                    )})}
+                    <section key={index}>
+                      <TitleHighlight title={list.section}></TitleHighlight>
 
+                      <CardList list={list} />
+                      <hr />
+                    </section>
+                  );
+                })}
               </div>
               <footer className="d-flex justify-content-center">
                 <Button onClick={themeToggler} className="btn btn-dark">
@@ -91,61 +91,124 @@ const App = () => {
               </footer>
             </PrivateRoute>
             <PrivateRoute path="/breaking-news">
-                <CustomNavbar loggedIn={true}/>
-                <div className = 'App'>
-                {
-                videos.map((list, index) => {
-                  console.log(list)
-                  if (list.section !== 'Breaking News') {
-                    return ;
-                    }
-                    else return (
+              <CustomNavbar loggedIn={true} />
+              <div className="App">
+                {videos.map((list, index) => {
+                  console.log(list);
+                  if (list.section !== "Breaking News") {
+                    return;
+                  } else
+                    return (
                       <section key={index}>
                         <TitleHighlight title={list.section}></TitleHighlight>
-  
-                        <CardList list={list} />
-                        <hr />
+                        <Carousel>
+                          {list.items.map((item, index) => {
+                            return (
+                              
+                              <Carousel.Item>
+                                <div className="d-flex justify-content-center w-100">
+                                <Card
+                                  key={index}
+                                  item={item}
+                                  channel={list.channel}
+                                />
+                                 </div>
+                              </Carousel.Item>
+                           
+                          );
+                          })}
+                        </Carousel>
+
+                        
                       </section>
-                    )})}
-                </div>
+                    );
+                })}
+                <footer className="d-flex justify-content-center">
+                <Button onClick={themeToggler} className="btn btn-dark">
+                  Switch theme
+                </Button>
+              </footer>
+              </div>
             </PrivateRoute>
             <PrivateRoute path="/entertainment">
-                <CustomNavbar loggedIn={true}/>
-                <div className = 'App'>
-                {
-                videos.map((list, index) => {
-                  console.log(list)
-                  if (list.section !== 'Entertainment') {
-                    return ;
-                    }
-                    else return (
+              <CustomNavbar loggedIn={true} />
+              <div className="App">
+                {videos.map((list, index) => {
+                  console.log(list);
+                  if (list.section !== "Entertainment") {
+                    return;
+                  } else
+                    return (
                       <section key={index}>
                         <TitleHighlight title={list.section}></TitleHighlight>
-  
-                        <CardList list={list} />
-                        <hr />
+                        <Carousel>
+                          {list.items.map((item, index) => {
+                            return (
+                              
+                              <Carousel.Item>
+                                <div className="d-flex justify-content-center w-100">
+                                <Card
+                                  key={index}
+                                  item={item}
+                                  channel={list.channel}
+                                />
+                                 </div>
+                              </Carousel.Item>
+                           
+                          );
+                          })}
+                        </Carousel>
+
+                       
                       </section>
-                    )})}
-                </div>
+                    );
+                })}
+                <footer className="d-flex justify-content-center">
+                <Button onClick={themeToggler} className="btn btn-dark">
+                  Switch theme
+                </Button>
+              </footer>
+              </div>
             </PrivateRoute>
             <PrivateRoute path="/recommended">
-                <CustomNavbar loggedIn={true}/>
-                <div className = 'App'>
-                {
-                videos.map((list, index) => {
-                  console.log(list)
-                  if (list.section !== 'Recommended') {
-                    return ;
-                    }
-                    else return (
+              <CustomNavbar loggedIn={true} />
+              <div className="App">
+                {videos.map((list, index) => {
+                  console.log(list);
+                  if (list.section !== "Recommended") {
+                    return;
+                  } else
+                    return (
                       <section key={index}>
                         <TitleHighlight title={list.section}></TitleHighlight>
-  
-                        <CardList list={list} />
-                        <hr />
+                        <Carousel>
+                          {list.items.map((item, index) => {
+                            return (
+                              
+                                <Carousel.Item>
+                                  <div className="d-flex justify-content-center w-100">
+                                  <Card
+                                    key={index}
+                                    item={item}
+                                    channel={list.channel}
+                                  />
+                                   </div>
+                                </Carousel.Item>
+                             
+                            );
+                          })}
+                        </Carousel>
+
+                        
                       </section>
-                    )})}
-                </div>
+                    );
+                })}
+                <footer className="d-flex justify-content-center">
+                <Button onClick={themeToggler} className="btn btn-dark">
+                  Switch theme
+                </Button>
+              </footer>
+              </div>
             </PrivateRoute>
             <Route path="*">
               <CustomNavbar />

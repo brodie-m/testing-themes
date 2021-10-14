@@ -24,7 +24,7 @@ export default function CustomNavbar({loggedIn}) {
                <Nav.Link href='/breaking-news'>Breaking News</Nav.Link>
                <Nav.Link href='/entertainment'>Entertainment</Nav.Link>
                <Nav.Link href='/recommended'>Recommended</Nav.Link>
-               <Nav.Link href={loggedIn ? "/logout" : '/login'} onClick={handleClick}>{loggedIn ? 'Logged in! Click to log out':'Log in'} </Nav.Link>
+               <Nav.Link onClick={handleClick}>{loggedIn ? 'Logged in! Click to log out':'Log in'} </Nav.Link>
            </Container> 
         </Navbar>
     )

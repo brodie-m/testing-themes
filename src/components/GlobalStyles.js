@@ -83,5 +83,6 @@ export const GlobalStyles = createGlobalStyle`
       .enabled:hover {
           box-shadow: none;
           transform: translateY(2px)
-      
+      }
+    
 `

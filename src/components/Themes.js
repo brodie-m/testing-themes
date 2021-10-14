@@ -16,7 +16,7 @@ export const darkTheme = {
     onPrimary : `#000000`,
     onSecondary : `#000000`,
     body: '#363537',
-    titleHighlight: `#252426`,
+    
     cardBody: `#474648`,
     navBody: '#474648',
     text: '#FAFAFA',
