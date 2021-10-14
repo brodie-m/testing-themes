@@ -27,6 +27,19 @@ export const darkTheme = {
     
 }
 
-export const eightiesTheme = {
-    // body:
+export const crazyTheme = {
+    primary: `#36c4df`,
+    primaryVariant: `#f33861`,
+    secondary: `#2bbd79`,
+    onPrimary : `#c86671`,
+    onSecondary : `#ffce66`,
+    body: '#82e527',
+    
+    cardBody: `#e07891`,
+    navBody: '#e07891',
+    text: '#FAFAFA',
+    toggleBorder: '#6B8096',
+    background: '#121212',
+    font: `arial`,
+    padding: `0.5rem`
 }

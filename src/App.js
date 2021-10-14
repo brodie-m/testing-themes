@@ -15,7 +15,7 @@ import Card from "./components/Card";
 //start theme stuff
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
-import { lightTheme, darkTheme } from "./components/Themes";
+import { lightTheme, darkTheme, crazyTheme   } from "./components/Themes";
 //end theme stuff
 
 //router
@@ -37,7 +37,7 @@ const App = () => {
   //theme stuff
   const [theme, setTheme] = useState("dark");
   function themeToggler() {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    theme === "light" ? setTheme("dark") : (theme === 'dark' ? setTheme ('crazy') : setTheme('light'));
   }
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === "light" ? lightTheme : theme ==='dark' ? darkTheme : crazyTheme}>
       <AuthProvider>
         <GlobalStyles />
         <Router>
