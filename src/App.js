@@ -14,12 +14,13 @@ import { lightTheme, darkTheme } from "./components/Themes";
 
 //bootstrap
 import {Button} from 'react-bootstrap'
+import TitleHighlight from "./components/TitleHighlight";
 
 const App = () => {
   const [videos, setVideos] = useState([]);
 
   //theme stuff
-  const [theme,setTheme]=useState('light');
+  const [theme,setTheme]=useState('dark');
   function themeToggler() {
     theme === 'light' ? setTheme('dark') : setTheme('light')
   }
@@ -44,7 +45,12 @@ const App = () => {
             videos.map((list, index) => {
               return (
                 <section key={index}>
-                  <h2 className="section-title">{list.section}</h2>
+                  <TitleHighlight title={list.section}>
+                 
+                  </TitleHighlight>
+                    
+                  
+                  
                   <CardList list={list} />
                   <hr />
                 </section>
