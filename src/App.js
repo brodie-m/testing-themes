@@ -43,7 +43,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVideos(dummyData);
-    }, 1000);
+    }, 0);
     return () => clearTimeout(timer);
   }, []);
 
