@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useAuthContext } from "../../contexts/auth";
+import { useAuthContext } from "./contexts/auth";
 import { Wisdom } from '../../contexts'
 
 const Register = () => {
