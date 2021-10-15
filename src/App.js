@@ -12,6 +12,7 @@ import Register from "./components/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import { Carousel } from "react-bootstrap";
 import Card from "./components/Card";
+import ThemeDisplay from './components/ThemeDisplay'
 //start theme stuff
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
@@ -43,7 +44,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVideos(dummyData);
-    }, 1000);
+    }, 0);
     return () => clearTimeout(timer);
   }, []);
 
@@ -85,6 +86,7 @@ const App = () => {
                 })}
               </div>
               <footer className="d-flex justify-content-center">
+              <ThemeDisplay/>
                 <Button onClick={themeToggler} className="btn btn-dark">
                   Switch theme
                 </Button>
@@ -204,6 +206,7 @@ const App = () => {
                     );
                 })}
                 <footer className="d-flex justify-content-center">
+                  
                 <Button onClick={themeToggler} className="btn btn-dark">
                   Switch theme
                 </Button>
