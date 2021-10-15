@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 import dummyData from "./data";
 import { AuthProvider } from "./components/contexts/Auth";
 
 //components
 import CustomNavbar from "./components/CustomNavbar";
+import {Dropdown, DropdownButton} from 'react-bootstrap'
 import Login from "./components/Login";
 import CardList from "./components/CardList";
 import NotFound from "./components/NotFound";
@@ -14,7 +15,7 @@ import { Carousel } from "react-bootstrap";
 import Card from "./components/Card";
 import ThemeDisplay from './components/ThemeDisplay'
 //start theme stuff
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, ThemeContext } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyles";
 import { lightTheme, darkTheme, crazyTheme   } from "./components/Themes";
 //end theme stuff
@@ -35,11 +36,18 @@ import NoTokenRoute from "./components/NoTokenRoute";
 const App = () => {
   const [videos, setVideos] = useState([]);
 
-  //theme stuff
+  // theme stuff
   const [theme, setTheme] = useState("dark");
   function themeToggler() {
     theme === "light" ? setTheme("dark") : (theme === 'dark' ? setTheme ('crazy') : setTheme('light'));
   }
+    const [themeName, setThemeName] = useState('dark')
+    function handleSelect(e) {
+        setThemeName(e)
+    }
+  
+
+  //
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -49,7 +57,7 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : theme ==='dark' ? darkTheme : crazyTheme}>
+    <ThemeProvider theme={themeName === "light" ? lightTheme : themeName ==='dark' ? darkTheme : crazyTheme}>
       <AuthProvider>
         <GlobalStyles />
         <Router>
@@ -86,10 +94,11 @@ const App = () => {
                 })}
               </div>
               <footer className="d-flex justify-content-center">
-              <ThemeDisplay/>
-                <Button onClick={themeToggler} className="btn btn-dark">
-                  Switch theme
-                </Button>
+              <DropdownButton variant='dark' title='Select theme' onSelect = {handleSelect} selectedTheme={themeName}>
+            <Dropdown.Item eventKey="dark">Dark</Dropdown.Item>
+            <Dropdown.Item eventKey="light">Light</Dropdown.Item>
+            <Dropdown.Item eventKey="crazy">Random</Dropdown.Item>
+        </DropdownButton>
               </footer>
             </PrivateRoute>
             <PrivateRoute path="/breaking-news">
@@ -126,9 +135,11 @@ const App = () => {
                     );
                 })}
                 <footer className="d-flex justify-content-center">
-                <Button onClick={themeToggler} className="btn btn-dark">
-                  Switch theme
-                </Button>
+                <DropdownButton variant='dark' title='Select theme' onSelect = {handleSelect} selectedTheme={themeName}>
+            <Dropdown.Item eventKey="dark">Dark</Dropdown.Item>
+            <Dropdown.Item eventKey="light">Light</Dropdown.Item>
+            <Dropdown.Item eventKey="crazy">Random</Dropdown.Item>
+        </DropdownButton>
               </footer>
               </div>
             </PrivateRoute>
@@ -166,9 +177,11 @@ const App = () => {
                     );
                 })}
                 <footer className="d-flex justify-content-center">
-                <Button onClick={themeToggler} className="btn btn-dark">
-                  Switch theme
-                </Button>
+                <DropdownButton variant='dark' title='Select theme' onSelect = {handleSelect} selectedTheme={themeName}>
+            <Dropdown.Item eventKey="dark">Dark</Dropdown.Item>
+            <Dropdown.Item eventKey="light">Light</Dropdown.Item>
+            <Dropdown.Item eventKey="crazy">Random</Dropdown.Item>
+        </DropdownButton>
               </footer>
               </div>
             </PrivateRoute>
@@ -207,9 +220,11 @@ const App = () => {
                 })}
                 <footer className="d-flex justify-content-center">
                   
-                <Button onClick={themeToggler} className="btn btn-dark">
-                  Switch theme
-                </Button>
+                <DropdownButton variant='dark' title='Select theme' onSelect = {handleSelect} selectedTheme={themeName}>
+            <Dropdown.Item eventKey="dark">Dark</Dropdown.Item>
+            <Dropdown.Item eventKey="light">Light</Dropdown.Item>
+            <Dropdown.Item eventKey="crazy">Random</Dropdown.Item>
+        </DropdownButton>
               </footer>
               </div>
             </PrivateRoute>

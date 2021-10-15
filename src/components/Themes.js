@@ -1,4 +1,5 @@
 export const lightTheme = {
+    name: 'light',
     body: `#CCC`,
     cardBody: `#BBB`,
     navBody: `#BBB`,
@@ -10,6 +11,7 @@ export const lightTheme = {
     
 }
 export const darkTheme = {
+    name: 'dark',
     primary: `#BB86FC`,
     primaryVariant: `#3700B3`,
     secondary: `#03DAC6`,
@@ -28,6 +30,7 @@ export const darkTheme = {
 }
 
 export const crazyTheme = {
+    name: 'crazy',
     primary: `#36c4df`,
     primaryVariant: `#f33861`,
     secondary: `#2bbd79`,
